@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import * as UI from '@vkontakte/vkui';
-import * as VKConnect from '@vkontakte/vkui-connect';
+// import * as VKConnect from '@vkontakte/vkui-connect';
+import * as VKConnect from './vkui-connect';
 import '@vkontakte/vkui/dist/vkui.css';
 
 export default class App extends Component {
