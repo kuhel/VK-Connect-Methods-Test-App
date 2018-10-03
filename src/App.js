@@ -38,7 +38,8 @@ export default class App extends Component {
             "VKWebAppOpenApp",
             "VKWebAppOpenQR",
             "VKWebAppSetViewSettings",
-        ];
+            "VKWebAppSetLocation",
+        ].sort();
     }
 
     render() {
