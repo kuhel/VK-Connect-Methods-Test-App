@@ -1,24 +1,17 @@
 import React, { Component } from 'react';
 import * as UI from '@vkontakte/vkui';
-// import * as VKConnect from '@vkontakte/vkui-connect';
-import * as VKConnect from './vkui-connect';
+import * as VKConnect from '@vkontakte/vkui-connect';
+// import * as VKConnect from './vkui-connect';
 import '@vkontakte/vkui/dist/vkui.css';
+import {fetch as fetchPolyfill} from 'whatwg-fetch';
 
 export default class App extends Component {
-
-    componentWillMount() {
-        VKConnect.subscribe(function(e) {
-            e = e.detail;
-            let type = e['type'];
-            if (['VKWebAppUpdateInfo', 'VKWebAppUpdateInsets'].indexOf(type) === -1) {
-                document.getElementById('response').value = JSON.stringify(e);
-            }
-        });
-    }
-
-
     constructor(props) {
         super(props);
+
+        this.state = {
+            actions: {}
+        };
 
         this.events = [
             "VKWebAppGetAuthToken",
@@ -39,7 +32,59 @@ export default class App extends Component {
             "VKWebAppOpenQR",
             "VKWebAppSetViewSettings",
             "VKWebAppSetLocation",
+            "VKWebAppScroll",
+            "VKWebAppResizeWindow",
         ].sort();
+
+        this.onService = this.onService.bind(this);
+        this.onServiceNew = this.onServiceNew.bind(this);
+        this.onGroup = this.onGroup.bind(this);
+        this.onUser = this.onUser.bind(this);
+    }
+
+    componentWillMount() {
+        VKConnect.subscribe(function(e) {
+            e = e.detail;
+            let type = e['type'];
+            if (['VKWebAppUpdateInfo', 'VKWebAppUpdateInsets'].indexOf(type) === -1) {
+                document.getElementById('response').value = JSON.stringify(e);
+            }
+        });
+    }
+
+    componentDidMount() {
+        fetchPolyfill('http://extype.ru/sandbox/api.php?recipient=service')
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data);
+            this.setState({
+                actions: { ...data },
+            });
+        });
+    }
+
+    onService() {
+        if (this.state.actions.service) {
+            VKConnect.send('VKWebAppOpenPayForm', this.state.actions.service)
+        }
+    }
+
+    onServiceNew() {
+        if (this.state.actions.service_new) {
+            VKConnect.send('VKWebAppOpenPayForm', this.state.actions.service_new)
+        }
+    }
+
+    onGroup() {
+        if (this.state.actions.group) {
+            VKConnect.send('VKWebAppOpenPayForm', this.state.actions.group)
+        }
+    }
+
+    onUser() {
+        if (this.state.actions.user) {
+            VKConnect.send('VKWebAppOpenPayForm', this.state.actions.user)
+        }
     }
 
     render() {
@@ -59,6 +104,23 @@ export default class App extends Component {
                         <UI.FormLayout>
                             <UI.Textarea id='response' />
                         </UI.FormLayout>
+                    </UI.Group>
+
+                    <UI.Group title="Pay To">
+                        <UI.List>
+                            <UI.ListItem onClick={this.onService}>
+                                Pay To Service
+                            </UI.ListItem>
+                            <UI.ListItem onClick={this.onServiceNew}>
+                                Pay To Service New
+                            </UI.ListItem>
+                            <UI.ListItem onClick={this.onGroup}>
+                                Pay To Group
+                            </UI.ListItem>
+                            <UI.ListItem onClick={this.onUser}>
+                                Pay To User
+                            </UI.ListItem>
+                        </UI.List>
                     </UI.Group>
 
                     <UI.Group title="Event type">

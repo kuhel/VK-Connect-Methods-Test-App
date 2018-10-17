@@ -8,9 +8,9 @@
   dependencies:
     svg-sprite-loader "^3.8.0"
 
-"@vkontakte/vkui-connect@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@vkontakte/vkui-connect/-/vkui-connect-1.0.0.tgz#4f8c2c14801d95b09e07d50e2d97304fec8f3182"
+"@vkontakte/vkui-connect@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@vkontakte/vkui-connect/-/vkui-connect-1.1.2.tgz#c79fa7aa19b299281559c973aae4eee8219fe023"
 
 "@vkontakte/vkui@^2.9.4":
   version "2.11.0"
@@ -7162,6 +7162,10 @@ whatwg-encoding@^1.0.1:
 whatwg-fetch@2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/whatwg-fetch/-/whatwg-fetch-2.0.3.tgz#9c84ec2dcf68187ff00bc64e1274b442176e1c84"
+
+whatwg-fetch@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/whatwg-fetch/-/whatwg-fetch-3.0.0.tgz#fc804e458cc460009b1a2b966bc8817d2578aefb"
 
 whatwg-url@^4.3.0:
   version "4.8.0"
