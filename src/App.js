@@ -65,25 +65,25 @@ export default class App extends Component {
 
     onService() {
         if (this.state.actions.service) {
-            VKConnect.send('VKWebAppOpenPayForm', this.state.actions.service)
+            VKConnect.send('VKWebAppOpenPayForm', {"app_id": 6695435, "action": "pay-to-service", "params": this.state.actions.service});
         }
     }
 
     onServiceNew() {
         if (this.state.actions.service_new) {
-            VKConnect.send('VKWebAppOpenPayForm', this.state.actions.service_new)
+            VKConnect.send('VKWebAppOpenPayForm', {"app_id": 6695435, "action": "pay-to-service", "params": this.state.actions.service_new});
         }
     }
 
     onGroup() {
         if (this.state.actions.group) {
-            VKConnect.send('VKWebAppOpenPayForm', this.state.actions.group)
+            VKConnect.send('VKWebAppOpenPayForm', {"app_id": 6695435, "action": "pay-to-group", "params": this.state.actions.group});
         }
     }
 
     onUser() {
         if (this.state.actions.user) {
-            VKConnect.send('VKWebAppOpenPayForm', this.state.actions.user)
+            VKConnect.send('VKWebAppOpenPayForm', {"app_id": 6695435, "action": "pay-to-user", "params": this.state.actions.user});
         }
     }
 
