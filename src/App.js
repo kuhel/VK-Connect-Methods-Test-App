@@ -53,7 +53,7 @@ export default class App extends Component {
     }
 
     componentDidMount() {
-        fetchPolyfill('http://extype.ru/sandbox/api.php?recipient=service')
+        fetchPolyfill('https://extype.ru/sandbox/api.php?recipient=service')
         .then((response) => response.json())
         .then((data) => {
             console.log(data);
