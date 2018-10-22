@@ -16,7 +16,6 @@ export default class App extends Component {
         this.events = [
             "VKWebAppGetAuthToken",
             "VKWebAppCallAPIMethod",
-            "VKWebAppClose",
             "VKWebAppGetGeodata",
             "VKWebAppGetUserInfo",
             "VKWebAppGetPhoneNumber",
@@ -35,6 +34,7 @@ export default class App extends Component {
             "VKWebAppSetLocation",
             "VKWebAppScroll",
             "VKWebAppResizeWindow",
+            "VKWebAppClose",
         ].sort();
 
         this.onService = this.onService.bind(this);
