@@ -4,8 +4,6 @@
   var FUNCTION = 'function';
   var UNDEFINED = 'undefined';
   var subscribers = [];
-  var isWeb = typeof window !== UNDEFINED && !window.AndroidBridge && !window.webkit;
-  var eventType = isWeb ? 'message' : 'VKWebAppEvent';
 
   if (typeof window !== UNDEFINED) {
 
@@ -25,19 +23,11 @@
       })();
     }
 
-    window.addEventListener(eventType, function() {
+    window.addEventListener('VKWebAppEvent', function() {
       var args = Array.prototype.slice.call(arguments);
-      if (isWeb) {
-        subscribers.forEach(function(fn) {
-          fn({
-            detail: args[0].data
-          });
-        });
-      } else {
-        subscribers.forEach(function(fn) {
-          fn.apply(null, args);
-        });
-      }
+      subscribers.forEach(function(fn) {
+        fn.apply(null, args);
+      });
     });
   }
 
@@ -60,7 +50,6 @@
       var isClient = typeof window !== UNDEFINED;
       var androidBridge = isClient && window.AndroidBridge;
       var iosBridge = isClient && window.webkit && window.webkit.messageHandlers;
-      var isDesktop = !androidBridge && !iosBridge;
 
       if (androidBridge && typeof androidBridge[handler] == FUNCTION) {
         androidBridge[handler](JSON.stringify(params));
@@ -69,13 +58,6 @@
         iosBridge[handler].postMessage(params);
       }
 
-      if (isDesktop) {
-        parent.postMessage({
-          handler,
-          params,
-          type: 'vk-connect'
-        }, '*');
-      }
     },
     /**
      * Subscribe on VKWebAppEvent
@@ -102,42 +84,12 @@
 
     /**
      * Checks if native client supports nandler
-     *
+     * @deprecated
      * @param {String} handler Handler name
      * @returns {boolean}
      */
     supports: function supports(handler) {
-
-      var isClient = typeof window !== UNDEFINED;
-      var androidBridge = isClient && window.AndroidBridge;
-      var iosBridge = isClient && window.webkit && window.webkit.messageHandlers;
-      var desktopEvents = [
-        "VKWebAppGetAuthToken",
-        "VKWebAppCallAPIMethod",
-        "VKWebAppGetGeodata",
-        "VKWebAppGetUserInfo",
-        "VKWebAppGetPhoneNumber",
-        "VKWebAppGetClientVersion",
-        "VKWebAppOpenPayForm",
-        "VKWebAppShare",
-        "VKWebAppAllowNotifications",
-        "VKWebAppDenyNotifications",
-        "VKWebAppShowWallPostBox",
-        "VKWebAppGetEmail",
-        "VKWebAppAllowMessagesFromGroup",
-        "VKWebAppJoinGroup",
-        "VKWebAppOpenApp",
-        "VKWebAppSetLocation",
-        "VKWebAppScroll",
-        "VKWebAppResizeWindow"
-      ];
-
-      if (androidBridge && typeof androidBridge[handler] == FUNCTION) return true;
-
-      if (iosBridge && iosBridge[handler] && typeof iosBridge[handler].postMessage == FUNCTION) return true;
-
-      if (!iosBridge && !androidBridge && ~desktopEvents.indexOf(handler)) return true;
-
+      console.warn('Method "supports" is deprecated. Use response of VK Connect event instead')
       return false;
     }
   };
