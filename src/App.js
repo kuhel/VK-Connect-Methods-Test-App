@@ -17,10 +17,12 @@ export default class App extends Component {
         this.events = [
             "VKWebAppGetAuthToken",
             "VKWebAppCallAPIMethod",
+            "VKWebAppAddToCommunity",
             "VKWebAppGetGeodata",
             "VKWebAppGetUserInfo",
             "VKWebAppGetPhoneNumber",
             "VKWebAppGetClientVersion",
+            "VKWebAppGetCommunityAuthToken",
             "VKWebAppOpenPayForm",
             "VKWebAppShare",
             "VKWebAppAllowNotifications",
