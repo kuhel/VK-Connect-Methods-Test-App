@@ -1,6 +1,6 @@
 {
   "name": "vkapps-connect-test",
-  "version": "0.1.12",
+  "version": "0.2.0",
   "private": true,
   "homepage": "https://kuhel.github.io/VK-Connect-Methods-Test-App",
   "dependencies": {
