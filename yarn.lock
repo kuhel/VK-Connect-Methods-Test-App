@@ -8,9 +8,9 @@
   dependencies:
     svg-sprite-loader "^3.8.0"
 
-"@vkontakte/vkui-connect@^1.1.2":
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/@vkontakte/vkui-connect/-/vkui-connect-1.1.2.tgz#c79fa7aa19b299281559c973aae4eee8219fe023"
+"@vkontakte/vkui-connect@^1.2.0-beta.0":
+  version "1.2.0-beta.0"
+  resolved "https://registry.yarnpkg.com/@vkontakte/vkui-connect/-/vkui-connect-1.2.0-beta.0.tgz#79892cc0d0171fe41b8889879745753ce8094985"
 
 "@vkontakte/vkui@^2.9.4":
   version "2.11.0"

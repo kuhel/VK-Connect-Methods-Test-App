@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import * as UI from '@vkontakte/vkui';
-// import * as VKConnect from '@vkontakte/vkui-connect';
-import * as VKConnect from './vkui-connect/desktop';
+import * as VKConnect from '@vkontakte/vkui-connect';
+// import * as VKConnect from './vkui-connect/desktop';
 // import * as VKConnect from '@vkontakte/vkui-connect-desktop';
 import '@vkontakte/vkui/dist/vkui.css';
 import {fetch as fetchPolyfill} from 'whatwg-fetch';
@@ -97,7 +97,7 @@ export default class App extends Component {
             <UI.View activePanel="main">
                 <UI.Panel id="main">
                     <UI.PanelHeader>
-                        VK Connect Test v2.2.0
+                        VK Connect Test v2.2.2
                     </UI.PanelHeader>
                     <UI.Group title="Data">
                         <UI.FormLayout>
